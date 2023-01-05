@@ -73,32 +73,42 @@
 					text-indent: 40px;
 				}
 
-			ul {
-				list-style: none;
-				width: 428px;
-				margin: 0 auto;
-				text-align: left;
-			}
-
-				ul li {
-					border-bottom: 1px solid #ddd;
-					padding: 10px;
-					overflow: hidden;
+		/* Style général des éléments de la liste */
+				ul, ol {
+					list-style: none; /* Supprime les puces */
+					margin: 0; /* Supprime les marges */
+					padding: 0; /* Supprime les paddings */
 				}
 
-					ul li img {
-						width: 60px;
-						height: 60px;
-						float: left;
-						border: none;
-					}
+				/* Style des éléments de la liste */
+				li {
+					margin-top: 1%;
+					margin-left: 15%;
+					margin-right: 15%;
+					padding: 10px; /* Ajoute un padding autour du contenu de chaque élément de la liste */
+					background-color: #eee; /* Ajoute un arrière-plan gris clair à chaque élément de la liste */
+					border-radius: 4px; /* Ajoute des coins arrondis aux éléments de la liste */
+				}
+				/* Style des éléments de la liste */
+				li:hover {
+					margin-top: 1%;
+					margin-left: 10%;
+					margin-right: 10%;
+					padding: 10px; /* Ajoute un padding autour du contenu de chaque élément de la liste */
+					background-color: rgb(161, 161, 161); /* Ajoute un arrière-plan gris clair à chaque élément de la liste */
+					border-radius: 4px; /* Ajoute des coins arrondis aux éléments de la liste */
+				}
+				/* Style des liens dans la liste */
+				li a {
+				color: #333; /* Change la couleur des liens en noir */
+				text-decoration: none; /* Supprime le soulignement des liens */
+				}
 
-					ul li p {
-						margin-left: 75px;
-						font-weight: bold;
-						padding-top: 12px;
-						color: #6e7a7f;
-					}
+				/* Style des liens actifs dans la liste */
+				li a.active {
+				color: #fff; /* Change la couleur des liens actifs en blanc */
+				background-color: #333; /* Change la couleur de l'arrière-plan des liens actifs en noir */
+}
 	</style>
 </head>
 <body>
