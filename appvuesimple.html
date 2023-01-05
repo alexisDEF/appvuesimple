@@ -113,21 +113,22 @@
 </head>
 <body>
 	<h1>Page des musees</h1>
-	<form id="demo" v-cloak>
+	<div id="demo" v-cloak>
 		<div class="bar">
 			<input type="text"
 				   v-model="searchString"
+				   @input="filteredMusees"
 				   placeholder="Rechercher un musee ici..." />
 		</div>
 
 		<ul>
-			<li v-for="musee in filteredMusees">
+			<li v-for="musee in museesFiltered">
 				<a href="{{musee['fields']['url_m']}}">
 					<p>{{musee['fields']['nomoff']}}</p>
 				</a>
 			</li>
 		</ul>
-	</form>
+	</div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3"></script>
     <script>const apiURL =
@@ -138,7 +139,8 @@
 				data() {
 					return {
 						searchString :"",
-						musees: null,
+						musees: new Array(),
+						museesFiltered: new Array(),
 					};
 				},
 				created: function () {
@@ -149,31 +151,21 @@
 					 fetchDataAsync: async function () {
 					 	try {
 					   	const response = await axios.get(apiURL, config)
-					 	  //console.log(response.data)
 					 	  this.musees = response.data.records
 					      //console.log(this.result[0]['fields']);
+						  this.museesFiltered = [...this.musees];
+						  //console.log(this.musees)
 					   } catch(error) {
 					     console.log(error);
 					   }
-					 },
-				},
-                computed: {
+					},
                     filteredMusees: function () {
-                        const musees_array = this.musees;
-                        let searchString = this.searchString;
-                        if (!searchString) {
-                            return musees_array;
-                        }
-                        searchString = searchString.trim().toLowerCase();
-                        return musees_array.filter(function (item) {
-                            if (
-                                item.title
-                                    .toLowerCase()
-                                    .includes(searchString)
-                            ) {
-                                return item;
-                            }
+
+						this.museesFiltered = this.musees.filter(musee => {
+							//console.log(musee);
+                            return musee.fields.nomoff.toLowerCase().includes(this.searchString.toLowerCase());
                         });
+
                     },
                 },
 			}).mount("#demo");</script>
